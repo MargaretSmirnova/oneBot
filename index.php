@@ -41,7 +41,7 @@ break;
 
 default:
 
-sendMessage($chat_id, 'Неизвестная команда!' );
+sendMessage($chat_id, 'Прекрасная '.$first_name.', такая команда не найдена' );
 
 break;
 

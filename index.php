@@ -24,6 +24,12 @@ $message = $output['message']['text']; // Выделим сообщение со
 * Получим команды от пользователя.
 * Переведём их для удобства в нижний регистр
 */
+$replyMarkup = array(
+  'keyboard' => array(
+      array("A", "B")
+  )
+);
+$encodedMarkup = json_encode($replyMarkup);
 
 switch(strtolower_ru($message)) {
 
@@ -31,7 +37,7 @@ case ('привет'):
 
 case ('/hello'):
 
-sendMessage($chat_id, 'Привет, '. $first_name . '! ' . $emoji['preload'] );
+sendMessage($chat_id, 'Привет, '. $first_name . '! ' . $emoji['preload'], $encodedMarkup );
 
 break;
 

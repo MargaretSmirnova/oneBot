@@ -1,0 +1,3 @@
+[submodule "telBot"]
+	path = telBot
+	url = https://github.com/TelegramBot/Api.git

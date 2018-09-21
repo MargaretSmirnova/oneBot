@@ -38,18 +38,6 @@ $BD[] = array(
 	'phone' => "89385035295",
 );
 
-function search_lastname($lname) {
-	$ser = array();
-	file_put_contents('/log.txt', $lname.'\r\n');
-	foreach ($BD as $key => $bbd) {
-		$pos = strripos($bbd['lastname'], $lname);
-		if ($pos !== false) {
-			$ser[] = $bbd;
-		}
-	}
-	file_put_contents('/log.txt', $ser);
-	return $ser;
-}
 /**
 * Получим команды от пользователя.
 * Переведём их для удобства в нижний регистр
@@ -92,7 +80,7 @@ break;
 
 default:
 
-$serch = search_lastname($message);
+$serch = search_lastname($message,$chat_id);
 $mess = '';
 if (count($serch) > 0) {
 	$mess = 'Найдено: \r\n';
@@ -135,4 +123,22 @@ function strtolower_ru($text) {
 
 return str_replace($alfavitupper,$alfavitlover,strtolower($text));
 
+}
+
+function search_lastname($lname,$chat_id) {
+	$ser = array();
+	file_put_contents('/log.txt', $lname.'\r\n');
+
+	foreach ($BD as $key => $bbd) {
+
+		$pos = strripos($bbd['lastname'], $lname);
+		sendMessage($chat_id, $pos, $encodedMarkup );
+		if ($pos === false) {
+			
+		} else {
+			$ser[] = $bbd;
+		}
+	}
+	file_put_contents('/log.txt', $ser);
+	return $ser;
 }

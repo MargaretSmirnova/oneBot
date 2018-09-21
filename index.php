@@ -80,9 +80,24 @@ break;
 
 default:
 
-$serch = search_lastname($message,$chat_id,$BD);
+//$serch = search_lastname($message,$chat_id,$BD);
+
+$ser = array();
+
+foreach ($BD as $key => $bbd) {
+
+	$pos = strripos($bbd['lastname'], $message);
+	sendMessage($chat_id, $pos, $encodedMarkup );
+	if ($pos === false) {
+		
+	} else {
+		$ser[] = $bbd;
+	}
+}
+
+
 $mess = '';
-if (count($serch) > 0) {
+if (count($ser) > 0) {
 	$mess = 'Найдено: \r\n';
 	foreach ($serch as $key => $value) {
 		$mess .= 'ФИО: '.$value['lastname'] . ' '.$value['name'] . ' '.$value['sername'].'\r\n';
@@ -95,7 +110,6 @@ if (count($serch) > 0) {
 	sendMessage($chat_id, 'Ничего не найдено в нашей базе', $encodedMarkup );
 }
 sendMessage($chat_id, count($serch), $encodedMarkup );
-sendMessage($chat_id, $serch, $encodedMarkup );
 
 break;
 

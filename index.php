@@ -80,7 +80,7 @@ break;
 
 default:
 
-$serch = search_lastname($message,$chat_id);
+$serch = search_lastname($message,$chat_id,$BD);
 $mess = '';
 if (count($serch) > 0) {
 	$mess = 'Найдено: \r\n';
@@ -125,7 +125,7 @@ return str_replace($alfavitupper,$alfavitlover,strtolower($text));
 
 }
 
-function search_lastname($lname,$chat_id) {
+function search_lastname($lname,$chat_id,$BD) {
 	$ser = array();
 	file_put_contents('/log.txt', $lname.'\r\n');
 

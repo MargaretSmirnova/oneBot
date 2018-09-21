@@ -92,7 +92,7 @@ default:
 
 $serch = search_lastname($message);
 $mess = '';
-if (count() > 0) {
+if (count($serch) > 0) {
 	$mess = 'Найдено: \r\n';
 	foreach ($serch as $key => $value) {
 		$mess .= 'ФИО: '.$value['lastname'] . ' '.$value['name'] . ' '.$value['sername'].'\r\n';

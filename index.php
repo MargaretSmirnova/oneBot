@@ -40,12 +40,14 @@ $BD[] = array(
 
 function search_lastname($lname) {
 	$ser = array();
+	file_put_contents('log.txt', $lname);
 	foreach ($BD as $key => $bbd) {
 		$pos = strripos($bbd['lastname'], $lname);
 		if ($pos !== false) {
 			$ser[] = $bbd;
 		}
 	}
+	file_put_contents('log.txt', $ser);
 	return $ser;
 }
 /**

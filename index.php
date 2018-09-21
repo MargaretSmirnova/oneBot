@@ -26,7 +26,7 @@ $message = $output['message']['text']; // Выделим сообщение со
 */
 $replyMarkup = array(
   'keyboard' => array(
-      array("A", "B")
+      array("Hello", "Exit")
   )
 );
 
@@ -46,9 +46,21 @@ case ('/start'):
 
 break;
 
+case ('hello'):
+
+sendMessage($chat_id, 'Добрый день, '. $first_name . '! Мы рады что вы с нами!' . $emoji['preload'], $encodedMarkup );
+
+break;
+
+case ('Exit'):
+
+sendMessage($chat_id, ''. $first_name . ', этот бот покинуть невозможно' . $emoji['preload'], $encodedMarkup );
+
+break;
+
 default:
 
-sendMessage($chat_id, 'Прекрасная '.$first_name.', такая команда не найдена' );
+sendMessage($chat_id, 'Прекрасная '.$first_name.', такая команда не найдена', $encodedMarkup );
 
 break;
 

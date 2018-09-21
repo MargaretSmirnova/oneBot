@@ -20,6 +20,34 @@ $first_name = $output['message']['chat']['first_name']; // Выделим имя
 
 $message = $output['message']['text']; // Выделим сообщение собеседника
 
+$BD = array();
+$BD[] = array(
+	'lastname' => 'Петриди',
+	'name' => "Мария",
+	'sername' => 'Николаевна',
+	'email' => "maria@iarga.ru",
+	'address' => "Калинина 13/47",
+	'phone' => "89182192101",
+);
+$BD[] = array(
+	'lastname' => 'Смирнова',
+	'name' => "Маргарита",
+	'sername' => 'Николаевна',
+	'email' => "code7@iarga.ru",
+	'address' => "Кубанская 53",
+	'phone' => "89385035295",
+);
+
+function search_lastname($lname) {
+	$ser = array();
+	foreach ($BD as $key => $bbd) {
+		$pos = strripos($bbd['lastname'], $lname);
+		if ($pos !== false) {
+			$ser[] = $bbd;
+		}
+	}
+	return $ser;
+}
 /**
 * Получим команды от пользователя.
 * Переведём их для удобства в нижний регистр
@@ -44,11 +72,13 @@ break;
 
 case ('/start'):
 
+sendMessage($chat_id, 'Здравствуйте, '. $first_name . '! ' . 'Введите Фамилию для поиска', $encodedMarkup );
+
 break;
 
 case ('hello'):
 
-sendMessage($chat_id, 'Добрый день, '. $first_name . '! Мы рады что вы с нами!' . $emoji['preload'], $encodedMarkup );
+sendMessage($chat_id, 'Добрый день, '. $first_name . '! Мы рады что вы с нами! Введите Фамилию для поиска' . $emoji['preload'], $encodedMarkup );
 
 break;
 
@@ -60,7 +90,19 @@ break;
 
 default:
 
-sendMessage($chat_id, 'Прекрасная '.$first_name.', такая команда не найдена', $encodedMarkup );
+$serch = search_lastname($message);
+$mess = '';
+if (count() > 0) {
+	$mess = 'Найдено: \r\n';
+	foreach ($serch as $key => $value) {
+		$mess .= 'ФИО: '.$value['lastname'] . ' '.$value['name'] . ' '.$value['sername'].'\r\n';
+		$mess .= "Email: ".$value['email'].'\r\n';
+		$mess .= "Телефон: ".$value['phone'].'\r\n';
+		$mess .= "Адрес: ".$value['address'].'\r\n \r\n';
+	}
+} else {
+	sendMessage($chat_id, 'Ничего не найдено в нашей базе', $encodedMarkup );
+}
 
 break;
 

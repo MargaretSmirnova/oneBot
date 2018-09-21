@@ -83,7 +83,7 @@ default:
 //$serch = search_lastname($message,$chat_id,$BD);
 
 $ser = array();
-
+sendMessage($chat_id, 'yes', $encodedMarkup );
 foreach ($BD as $key => $bbd) {
 
 	$pos = strripos($bbd['lastname'], $message);
@@ -99,7 +99,7 @@ foreach ($BD as $key => $bbd) {
 $mess = '';
 if (count($ser) > 0) {
 	$mess = 'Найдено: \r\n';
-	foreach ($serch as $key => $value) {
+	foreach ($ser as $key => $value) {
 		$mess .= 'ФИО: '.$value['lastname'] . ' '.$value['name'] . ' '.$value['sername'].'\r\n';
 		$mess .= "Email: ".$value['email'].'\r\n';
 		$mess .= "Телефон: ".$value['phone'].'\r\n';
@@ -107,7 +107,7 @@ if (count($ser) > 0) {
 	}
 	sendMessage($chat_id, $mess, $encodedMarkup );
 } else {
-	sendMessage($chat_id, 'Ничего не найдено в нашей базе', $encodedMarkup );
+	sendMessage($chat_id, 'Ничего не найдено в нашей базе 3', $encodedMarkup );
 }
 sendMessage($chat_id, count($serch), $encodedMarkup );
 

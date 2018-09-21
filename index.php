@@ -58,9 +58,9 @@ break;
 * Функция отправки сообщения в чат sendMessage().
 */
 
-function sendMessage($chat_id, $message) {
+function sendMessage($chat_id, $message, $reply_markup) {
 
-file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . urlencode($message));
+file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id . '&text=' . urlencode($message) . "&reply_markup=" . $reply_markup);
 
 }
 

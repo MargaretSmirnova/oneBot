@@ -52,7 +52,7 @@ sendMessage($chat_id, 'Добрый день, '. $first_name . '! Мы рады 
 
 break;
 
-case ('Exit'):
+case ('exit'):
 
 sendMessage($chat_id, ''. $first_name . ', этот бот покинуть невозможно' . $emoji['preload'], $encodedMarkup );
 

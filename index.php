@@ -29,6 +29,7 @@ $replyMarkup = array(
       array("A", "B")
   )
 );
+
 $encodedMarkup = json_encode($replyMarkup);
 
 switch(strtolower_ru($message)) {

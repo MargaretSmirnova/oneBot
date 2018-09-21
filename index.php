@@ -40,14 +40,14 @@ $BD[] = array(
 
 function search_lastname($lname) {
 	$ser = array();
-	file_put_contents('log.txt', $lname.'\r\n');
+	file_put_contents('/log.txt', $lname.'\r\n');
 	foreach ($BD as $key => $bbd) {
 		$pos = strripos($bbd['lastname'], $lname);
 		if ($pos !== false) {
 			$ser[] = $bbd;
 		}
 	}
-	file_put_contents('log.txt', $ser);
+	file_put_contents('/log.txt', $ser);
 	return $ser;
 }
 /**
@@ -106,8 +106,8 @@ if (count($serch) > 0) {
 } else {
 	sendMessage($chat_id, 'Ничего не найдено в нашей базе', $encodedMarkup );
 }
-
-sendMessage($chat_id, $message, $encodedMarkup );
+sendMessage($chat_id, count($serch), $encodedMarkup );
+sendMessage($chat_id, $serch, $encodedMarkup );
 
 break;
 

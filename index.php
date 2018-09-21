@@ -102,9 +102,12 @@ if (count($serch) > 0) {
 		$mess .= "Телефон: ".$value['phone'].'\r\n';
 		$mess .= "Адрес: ".$value['address'].'\r\n \r\n';
 	}
+	sendMessage($chat_id, $mess, $encodedMarkup );
 } else {
 	sendMessage($chat_id, 'Ничего не найдено в нашей базе', $encodedMarkup );
 }
+
+sendMessage($chat_id, $message, $encodedMarkup );
 
 break;
 
